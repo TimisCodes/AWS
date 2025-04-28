@@ -1,0 +1,22 @@
+all:
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: your-private-ip
+
+  children:
+    ansibleservers:
+      hosts:
+        ansible01:
+          ansible_host: your-private-ip
+        ansible02:
+          ansible_host: your-private-ip
+
+    dbserver:
+      hosts:
+        ansible03:
+          ansible_host: your-private-ip
+
+    dc_oregon:
+      children:
+        ansibleservers:
+        dbserver:
